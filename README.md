@@ -7,6 +7,7 @@
 - Creacion del diseño de la aplicacion en [Figma](https://www.figma.com/design/PxAf2a3KXPt2WSYiUznHKH/Untitled?node-id=0-1&p=f&t=UP5jT99HvtNaXYRQ-0)
 - BaseUI + Vault + TailwindCSS para la creacion del input numerico y drawer lateral respectivamente
 - Estilos responsive creados para el correcto funcionamiento en dispositivos de menor tamaño
+- Configuracion de prettier para organizar los estilos y eslint para ordenar los imports por tipo
 
 ## Instalacion
 
@@ -14,6 +15,12 @@
 
 ``` bash
 npm i
+```
+
+### Ordenar los imports
+
+``` bash
+npm run lint
 ```
 
 ### Iniciar la aplicacion
