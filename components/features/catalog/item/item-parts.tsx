@@ -1,12 +1,9 @@
 import * as React from 'react';
 import Image from 'next/image';
 
-import BgLogo from '@/public/icons/bg-logo.svg';
-
 import { formatCurrency } from '@/lib/formatters';
 import { cn, getPercentageDifference } from '@/lib/utils';
-
-import { Product } from '@/schemas/product-schema';
+import { type Product } from '@/models/product';
 
 export type ItemBaseProps<T> = React.HTMLAttributes<T> & {
   product: Product;
@@ -32,7 +29,7 @@ const ItemTitle = React.forwardRef<
 >(({ className = '', ...rest }, ref) => {
   return (
     <h1
-      className={cn('text-xl font-semibold text-pretty', className)}
+      className={cn('text-pretty text-xl font-semibold', className)}
       ref={ref}
       {...rest}
     />
@@ -46,7 +43,7 @@ const ItemDescription = React.forwardRef<
 >(({ className = '', ...rest }, ref) => {
   return (
     <p
-      className={cn('text-foreground-secondary text-balance', className)}
+      className={cn('text-balance text-foreground-secondary', className)}
       ref={ref}
       {...rest}
     />
@@ -63,7 +60,7 @@ const ItemPrice = React.forwardRef<
 
   return (
     <div
-      className={cn('inline-flex items-center gap-2 -ml-px', className)}
+      className={cn('-ml-px inline-flex items-center gap-2', className)}
       ref={ref}
       {...rest}
     >
@@ -71,7 +68,7 @@ const ItemPrice = React.forwardRef<
         {formatCurrency(price)}
       </span>
       {discount ? (
-        <span className='text-sm text-blue-600' id='discount-percent'>
+        <span className='text-sm text-brand' id='discount-percent'>
           {getPercentageDifference(listingPrice, price)}% OFF
         </span>
       ) : null}
@@ -122,16 +119,14 @@ const ItemImage = React.forwardRef<
 >(({ className = '', product, ...rest }, ref) => {
   return (
     <div
-      className={cn('relative aspect-square [&_img]:rounded-md bg-contain [&_img]:drop-shadow [&_img]:object-cover', className)}
+      className={cn(
+        'bg-logo relative aspect-square max-w-full bg-contain bg-center bg-no-repeat [&_img]:rounded-md [&_img]:object-cover [&_img]:drop-shadow',
+        className,
+      )}
       ref={ref}
-      style={{ backgroundImage: `url(${BgLogo.src})` }}
       {...rest}
     >
-      <Image
-        src={product.image}
-        fill
-        alt={`${product.title}-image`}
-      />
+      <Image src={product.image} fill alt={`${product.title}-image`} />
     </div>
   );
 });

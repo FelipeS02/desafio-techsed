@@ -6,6 +6,7 @@ import { Minus, MoveHorizontal, Plus } from 'lucide-react';
 import { cn } from '@/lib/utils';
 
 import { ButtonProps, buttonVariants } from './button';
+import { inputStyles } from './input';
 
 export type NumberFieldScrubAreaProps = ComponentProps<
   typeof NFPrimitive.ScrubArea
@@ -49,7 +50,7 @@ const NumberFieldDecrement = forwardRef<HTMLButtonElement, ButtonProps>(
       <NFPrimitive.Decrement
         className={cn(
           buttonVariants({ size, variant }),
-          'rounded-r-none',
+          'rounded-r-none border-r-0',
           className,
         )}
         role='decrement'
@@ -69,10 +70,10 @@ const NumberFieldIncrement = forwardRef<HTMLButtonElement, ButtonProps>(
       <NFPrimitive.Increment
         className={cn(
           buttonVariants({ size, variant }),
-          'rounded-l-none',
+          'rounded-l-none border-l-0',
           className,
         )}
-        role="increment"
+        role='increment'
         ref={ref}
         {...rest}
       >
@@ -88,10 +89,7 @@ export type NumberFieldInputProps = ComponentProps<typeof NFPrimitive.Input>;
 const NumberFieldInput = forwardRef<HTMLInputElement, NumberFieldInputProps>(
   ({ className = '' }, ref) => (
     <NFPrimitive.Input
-      className={cn(
-        'flex h-7 w-full border-y border-input bg-transparent px-3 py-1 text-base shadow-sm transition-colors file:border-0 file:bg-transparent file:text-sm file:font-medium file:text-foreground placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:cursor-not-allowed disabled:opacity-50 md:text-sm',
-        className,
-      )}
+      className={cn(inputStyles, 'shadow-none', className)}
       ref={ref}
     />
   ),
@@ -104,7 +102,10 @@ const NumberField = forwardRef<HTMLDivElement, NumberFieldProps>(
   ({ children, className = '', ...rest }, ref) => {
     return (
       <NFPrimitive.Root
-        className={cn('flex flex-col', className)}
+        className={cn(
+          'inline-flex [&_button]:size-7 [&_button]:shrink-0',
+          className,
+        )}
         ref={ref}
         {...rest}
       >

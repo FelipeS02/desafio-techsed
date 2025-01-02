@@ -1,7 +1,8 @@
 import { useCallback, useState } from 'react';
 
-import { CartItem } from '@/schemas/cart-schema';
-import { Product } from '@/schemas/product-schema';
+import { type CartItem } from '@/models/cart';
+import { type Product } from '@/models/product';
+
 import { addItem, editItem, removeItem } from '@/store/cart-slice';
 
 import { useAppDispatch, useAppSelector } from './redux';
@@ -16,7 +17,7 @@ export default function useCartItem(product: Product) {
     ),
   );
 
-  const [quantity, setQuantity] = useState<number>(0);
+  const [quantity, setQuantity] = useState<number>(itemInCart?.quantity ?? 0);
 
   const isCartProductEdited = itemInCart && itemInCart.quantity !== quantity;
 

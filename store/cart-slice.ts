@@ -1,6 +1,5 @@
+import { Cart, CartItem } from '@/models/cart';
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
-
-import { Cart, CartItem } from '@/schemas/cart-schema';
 
 const initialState: Cart = {
   id: 1,

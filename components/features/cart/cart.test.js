@@ -2,7 +2,7 @@ import { render, screen } from '@testing-library/react';
 
 import Bricks from '@/public/images/bricks.webp';
 
-import { RenderCartItems } from './cart';
+import { CartItems } from './cart';
 
 describe('Cart', () => {
   it('Display list with price', () => {
@@ -24,7 +24,7 @@ describe('Cart', () => {
       },
     ];
 
-    render(<RenderCartItems items={testData} />);
+    render(<CartItems items={testData} />);
 
     const element = screen.getByTestId('cart-total');
 

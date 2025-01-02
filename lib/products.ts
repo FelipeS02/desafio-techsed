@@ -7,14 +7,14 @@ import GypsumBoard from '@/public/images/gypsum-board.webp';
 import IronRod from '@/public/images/iron-rod.webp';
 import KitchenFaucet from '@/public/images/kitchen-faucet.webp';
 import PaintCan from '@/public/images/paint.webp';
-import RoofTile from "@/public/images/roof-tile.webp"
+import RoofTile from '@/public/images/roof-tile.webp';
 import SandBag from '@/public/images/sand-bag.webp';
 import TexturedCoating from '@/public/images/textured-coating.webp';
 import WoodenBeam from '@/public/images/wooden-beam.webp';
 
-import { Product, productSchema } from '@/schemas/product-schema';
+import { type Product } from '@/models/product';
 
-import { timeout } from './utils';
+import { productSchema } from '@/schemas/product';
 
 const products = [
   {
@@ -140,9 +140,18 @@ const products = [
   },
 ];
 
-export default async function getProducts(): Promise<Product[]> {
-  // Simulate api loading
-  await timeout(1500);
-
+export async function getProducts(): Promise<Product[]> {
   return z.array(productSchema).parse(products);
+}
+
+export async function getProductById(
+  query: number,
+): Promise<Product | undefined> {
+  if (!query) return undefined;
+
+  const productById = products.find((product) => product.id === query);
+
+  if (!productById) return undefined;
+
+  return productSchema.parse(productById);
 }

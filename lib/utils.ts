@@ -26,3 +26,8 @@ export function getPercentageDifference(num1: number, num2: number) {
   // Return the percentage difference.
   return Math.ceil((difference / average) * 100);
 }
+
+/**
+ * Validate if input is a number or float value
+ */
+export const numberRegex = /^-?\d+(\.\d+)?$/;

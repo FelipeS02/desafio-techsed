@@ -37,4 +37,3 @@ export const productSchema = z
   // If listing price and price is present it means product is on discount
   .transform((p) => ({ ...p, discount: !!p.listingPrice && !!p.price }));
 
-export type Product = z.infer<typeof productSchema>;

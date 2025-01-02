@@ -1,6 +1,6 @@
 import { FC } from 'react';
 
-import { Product } from '@/schemas/product-schema';
+import { type Product } from '@/models/product';
 
 import Item from './item/item';
 

@@ -47,6 +47,22 @@
 
     --ring: 215 20.2% 65.1%;
     --radius: 0.5rem;
+
+    ::-webkit-scrollbar {
+      width: 10px;
+      height: 10px;
+    }
+
+    /* Track */
+    ::-webkit-scrollbar-track,
+    ::-webkit-scrollbar-corner {
+      @apply bg-background;
+    }
+
+    /* Handle */
+    ::-webkit-scrollbar-thumb {
+      @apply bg-brand;
+    }
   }
 
   .dark {

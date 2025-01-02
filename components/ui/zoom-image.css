@@ -1,0 +1,41 @@
+@keyframes drift-fadeZoomIn {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+@keyframes drift-fadeZoomOut {
+  0% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+  }
+}
+
+.drift-zoom-pane {
+  @apply border bg-background;
+  /* This is required because of a bug that causes border-radius to not
+    work with child elements in certain cases. */
+  transform: translate3d(0, 0, 0);
+}
+
+.drift-zoom-pane.drift-opening {
+  animation: drift-fadeZoomIn 180ms ease-out;
+}
+
+.drift-zoom-pane.drift-closing {
+  animation: drift-fadeZoomOut 210ms ease-in;
+}
+
+.drift-zoom-pane.drift-inline {
+  @apply size-36;
+  position: absolute;
+}
+
+.drift-bounding-box {
+  @apply bg-background;
+}

@@ -26,7 +26,9 @@ export default function RootLayout({
       <StoreProvider>
         <body className={`${inter.variable} antialiased`}>
           <Header />
-          {children}
+          <div className='m-auto mt-6 w-full max-w-section flex-grow items-start justify-start rounded-md p-4 md:border md:shadow-md'>
+            {children}
+          </div>
         </body>
       </StoreProvider>
     </html>

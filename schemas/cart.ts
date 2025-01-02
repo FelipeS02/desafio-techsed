@@ -1,6 +1,6 @@
 import { z } from 'zod';
 
-import { productSchema } from './product-schema';
+import { productSchema } from './product';
 
 export const cartItemSchema = z.object({
   product: productSchema,
@@ -13,7 +13,3 @@ export const cartSchema = z.object({
   // Transform to isoString to make it serializable
   createdAt: z.date().transform((date) => date.toISOString()),
 });
-
-export type CartItem = z.infer<typeof cartItemSchema>;
-
-export type Cart = z.infer<typeof cartSchema>;

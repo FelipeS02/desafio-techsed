@@ -1,8 +1,8 @@
 import { FC, HTMLAttributes } from 'react';
+import Link from 'next/link';
 
 import { cn } from '@/lib/utils';
-
-import { CartItem as CartItemType } from '@/schemas/cart-schema';
+import { type CartItem as CartItemType } from '@/models/cart';
 
 import {
   ItemImage,
@@ -22,7 +22,9 @@ const CartItem: FC<CartItemProps> = ({ item, className = '', ...rest }) => {
       )}
       {...rest}
     >
-      <ItemImage product={item.product} className='size-20' />
+      <Link href={`/products/${item.product.id}`}>
+        <ItemImage product={item.product} className='size-20' />
+      </Link>
       <div className='flex flex-col'>
         <ItemSKU>SKU: {item.product.id}</ItemSKU>
         <ItemTitle className='text-base font-normal'>
