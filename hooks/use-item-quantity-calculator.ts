@@ -84,7 +84,7 @@ export default function useItemQuantityCalculator(
   const handleChange = useCallback<QuantityCalculatorChange>(
     (newValue, type) => {
       if (type !== 'primary' && type !== 'secondary')
-        throw new Error('Input name is not valid');
+        throw new Error('Type must be "primary" or "secondary"');
 
       // Handle primary value changes (e.g., number of pallets, m², units)
       if (type === 'primary') {
