@@ -55,7 +55,7 @@ export const CartItems: FC<{ items: CartItemType[] }> = ({ items }) => {
         ))}
       </div>
       <DrawerFooter
-        className='sticky bottom-0 mt-auto inline-flex w-full flex-row justify-between bg-background text-base text-foreground-secondary'
+        className='sticky bottom-0 mt-auto inline-flex w-full flex-row justify-between bg-background text-base text-foreground-secondary border-t'
         data-testid='cart-total'
       >
         Total de {items.length} {productsText}:{' '}

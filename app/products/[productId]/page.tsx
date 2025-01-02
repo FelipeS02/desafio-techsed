@@ -1,3 +1,4 @@
+import { Metadata } from 'next';
 import Image from 'next/image';
 import { notFound } from 'next/navigation';
 
@@ -15,13 +16,53 @@ import CartOptions from '@/components/features/product-details/cart-options';
 import { formatCurrency } from '@/lib/formatters';
 import { getProductById } from '@/lib/products';
 
-export default async function ProductDetails({
+type Params = Readonly<{
+  params: Promise<{ productId: string }>;
+}>;
+
+// Use to caching getProductById response
+async function getProduct(productId: string) {
+  const product = await getProductById(Number(productId));
+  return product;
+}
+
+export async function generateMetadata({
   params,
 }: Readonly<{
   params: Promise<{ productId: string }>;
-}>) {
+}>): Promise<Metadata> {
   const query = (await params).productId;
-  const product = await getProductById(Number(query));
+  const product = await getProduct(query);
+
+  if (!product) {
+    return {
+      title: 'Producto no encontrado',
+      description: 'El producto que buscas no existe',
+    };
+  }
+
+  return {
+    title: product.title,
+    description: product.description,
+    openGraph: {
+      // Only in deploy
+      title: product.title,
+      description: product.description,
+      images: [
+        {
+          url: product.image.src,
+          width: 800,
+          height: 600,
+          alt: product.title,
+        },
+      ],
+    },
+  };
+}
+
+export default async function ProductDetails({ params }: Params) {
+  const query = (await params).productId;
+  const product = await getProduct(query);
 
   if (!product) return notFound();
 
